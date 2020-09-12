@@ -2,7 +2,8 @@
 from canary.api import Api
 from pytest import fixture
 
-from tests.async_mock MagicMock, patch
+from tests.async_mock import MagicMock, patch
+
 
 @fixture
 async def canary(hass):
