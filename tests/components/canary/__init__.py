@@ -1,5 +1,5 @@
 """Tests for the canary component."""
-from tests.async_mock import MagicMock, PropertyMock
+from unittest.mock import MagicMock, PropertyMock
 
 
 def mock_device(device_id, name, is_online=True, device_type_name=None):
