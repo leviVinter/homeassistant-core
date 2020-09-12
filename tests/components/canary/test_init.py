@@ -5,10 +5,10 @@ from homeassistant.components.canary import DOMAIN
 from homeassistant.setup import setup_component
 
 
-async def test_setup_with_valid_config(hass, canary) -> None:
+def test_setup_with_valid_config(hass, canary) -> None:
     """Test setup with valid YAML."""
     assert setup_component(hass, "persistent_notification", {})
-    config = {DOMAIN: {"username": "foo@bar.org", "password": "bar"}}
+    config = {DOMAIN: {"username": "test-username", "password": "test-password"}}
 
     with patch(
         "homeassistant.components.canary.alarm_control_panel.setup_platform",
