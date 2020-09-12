@@ -1,6 +1,5 @@
 """The tests for the Canary sensor platform."""
 from datetime import timedelta
-from unittest.mock import patch
 
 from homeassistant.components.canary import DOMAIN
 from homeassistant.components.canary.sensor import (
@@ -13,8 +12,9 @@ from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT, PERCENTAGE, TEMP_CELSI
 from homeassistant.setup import async_setup_component
 import homeassistant.util.dt as dt_util
 
-from . import mock_device, mock_location, mock_reading, update_entity
+from . import mock_device, mock_location, mock_reading
 
+from tests.async_mock import patch
 from tests.common import async_fire_time_changed, mock_registry
 
 
