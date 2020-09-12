@@ -22,6 +22,7 @@ async def test_sensors_pro(hass, canary) -> None:
     """Test the creation and values of the sensors for Canary Pro."""
     await async_setup_component(hass, "persistent_notification", {})
 
+    now = dt_util.utcnow()
     registry = mock_registry(hass)
     online_device_at_home = mock_device(20, "Dining Room", True, "Canary Pro")
 
@@ -37,7 +38,7 @@ async def test_sensors_pro(hass, canary) -> None:
     ]
 
     config = {DOMAIN: {"username": "test-username", "password": "test-password"}}
-    with patch(
+    with patch("homeassistant.util.dt.utcnow", return_value=now), patch(
         "homeassistant.components.canary.alarm_control_panel.setup_platform",
         return_value=True,
     ), patch(
@@ -46,6 +47,9 @@ async def test_sensors_pro(hass, canary) -> None:
     ):
         assert await async_setup_component(hass, DOMAIN, config)
         await hass.async_block_till_done()
+
+    async_fire_time_changed(hass, now + timedelta(seconds=31))
+    await hass.async_block_till_done()
 
     sensors = {
         "home_dining_room_temperature": (
@@ -113,6 +117,9 @@ async def test_sensors_attributes_pro(hass, canary) -> None:
         assert await async_setup_component(hass, DOMAIN, config)
         await hass.async_block_till_done()
 
+    async_fire_time_changed(hass, now + timedelta(seconds=31))
+    await hass.async_block_till_done()
+
     entity_id = "sensor.home_dining_room_air_quality"
     state = hass.states.get(entity_id)
     assert state
@@ -124,7 +131,7 @@ async def test_sensors_attributes_pro(hass, canary) -> None:
         mock_reading("air_quality", "0.4"),
     ]
 
-    async_fire_time_changed(hass, now + timedelta(seconds=31))
+    async_fire_time_changed(hass, now + timedelta(seconds=62))
     await hass.async_block_till_done()
 
     state = hass.states.get(entity_id)
@@ -149,6 +156,7 @@ async def test_sensors_flex(hass, canary) -> None:
     """Test the creation and values of the sensors for Canary Flex."""
     await async_setup_component(hass, "persistent_notification", {})
 
+    now = dt_util.utcnow()
     registry = mock_registry(hass)
     online_device_at_home = mock_device(20, "Dining Room", True, "Canary Flex")
 
@@ -163,7 +171,7 @@ async def test_sensors_flex(hass, canary) -> None:
     ]
 
     config = {DOMAIN: {"username": "test-username", "password": "test-password"}}
-    with patch(
+    with patch("homeassistant.util.dt.utcnow", return_value=now), patch(
         "homeassistant.components.canary.alarm_control_panel.setup_platform",
         return_value=True,
     ), patch(
@@ -172,6 +180,9 @@ async def test_sensors_flex(hass, canary) -> None:
     ):
         assert await async_setup_component(hass, DOMAIN, config)
         await hass.async_block_till_done()
+
+    async_fire_time_changed(hass, now + timedelta(seconds=31))
+    await hass.async_block_till_done()
 
     sensors = {
         "home_dining_room_battery": (
