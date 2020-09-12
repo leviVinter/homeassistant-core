@@ -48,9 +48,6 @@ async def test_sensors_pro(hass, canary) -> None:
         assert await async_setup_component(hass, DOMAIN, config)
         await hass.async_block_till_done()
 
-    async_fire_time_changed(hass, now + timedelta(seconds=31))
-    await hass.async_block_till_done()
-
     sensors = {
         "home_dining_room_temperature": (
             "20_temperature",
@@ -117,9 +114,6 @@ async def test_sensors_attributes_pro(hass, canary) -> None:
         assert await async_setup_component(hass, DOMAIN, config)
         await hass.async_block_till_done()
 
-    async_fire_time_changed(hass, now + timedelta(seconds=31))
-    await hass.async_block_till_done()
-
     entity_id = "sensor.home_dining_room_air_quality"
     state = hass.states.get(entity_id)
     assert state
@@ -180,9 +174,6 @@ async def test_sensors_flex(hass, canary) -> None:
     ):
         assert await async_setup_component(hass, DOMAIN, config)
         await hass.async_block_till_done()
-
-    async_fire_time_changed(hass, now + timedelta(seconds=31))
-    await hass.async_block_till_done()
 
     sensors = {
         "home_dining_room_battery": (
