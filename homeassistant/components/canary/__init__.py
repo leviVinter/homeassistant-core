@@ -103,9 +103,7 @@ class CanaryData:
 
     def get_reading(self, device_id, sensor_type):
         """Return reading for device_id and sensor type."""
-        print([device_id, sensor_type])
         readings = self._readings_by_device_id.get(device_id, [])
-        print(readings)
         return next(
             (
                 reading.value
