@@ -6,9 +6,9 @@ from pytest import fixture
 
 
 @fixture
-def canary(hass):
+async def canary(hass):
     """Mock the CanaryApi for easier testing."""
-    with patch.object(Api, "login", return_value=True), patch(
+    async with patch.object(Api, "login", return_value=True), patch(
         "homeassistant.components.canary.Api"
     ) as mock_canary:
         instance = mock_canary.return_value = Api(
