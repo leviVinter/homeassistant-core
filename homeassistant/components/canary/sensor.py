@@ -109,9 +109,7 @@ class CanarySensor(Entity):
 
     def update(self):
         """Get the latest state of the sensor."""
-        print(self._data)
         self._data.update()
-        print(self._data)
 
         canary_sensor_type = None
         if self._sensor_type[0] == "air_quality":
@@ -126,7 +124,6 @@ class CanarySensor(Entity):
             canary_sensor_type = SensorType.BATTERY
 
         value = self._data.get_reading(self._device_id, canary_sensor_type)
-        print(value)
 
         if value is not None:
             self._sensor_value = round(float(value), SENSOR_VALUE_PRECISION)
