@@ -6,6 +6,7 @@ from homeassistant.components.homeassistant import (
     SERVICE_UPDATE_ENTITY,
 )
 from homeassistant.const import ATTR_ENTITY_ID
+from homeassistant.core import HomeAssistant
 
 
 def update_entity(hass: HomeAssistant, entity_id: str) -> None:
