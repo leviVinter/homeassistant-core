@@ -145,7 +145,7 @@ async def test_sensors_attributes_pro(hass, canary) -> None:
     assert state.attributes[ATTR_AIR_QUALITY] == STATE_AIR_QUALITY_NORMAL
 
 
-def test_sensors_flex(hass, canary) -> None:
+async def test_sensors_flex(hass, canary) -> None:
     """Test the creation and values of the sensors for Canary Flex."""
     await async_setup_component(hass, "persistent_notification", {})
 
