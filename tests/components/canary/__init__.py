@@ -1,6 +1,23 @@
 """Tests for the canary component."""
 from unittest.mock import MagicMock, PropertyMock
 
+from homeassistant.components.homeassistant import (
+    DOMAIN as HA_DOMAIN,
+    SERVICE_UPDATE_ENTITY,
+)
+from homeassistant.const import ATTR_ENTITY_ID
+
+
+def update_entity(hass: HomeAssistant, entity_id: str) -> None:
+    """Run an update action for an entity."""
+    hass.services.call(
+        HA_DOMAIN,
+        SERVICE_UPDATE_ENTITY,
+        {ATTR_ENTITY_ID: entity_id},
+        blocking=True,
+    )
+    hass.block_till_done()
+
 
 def mock_device(device_id, name, is_online=True, device_type_name=None):
     """Mock Canary Device class."""
