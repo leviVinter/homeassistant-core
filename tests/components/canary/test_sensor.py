@@ -39,11 +39,7 @@ async def test_sensors_pro(hass, canary) -> None:
 
     config = {DOMAIN: {"username": "test-username", "password": "test-password"}}
     with patch("homeassistant.util.dt.utcnow", return_value=now), patch(
-        "homeassistant.components.canary.alarm_control_panel.setup_platform",
-        return_value=True,
-    ), patch(
-        "homeassistant.components.canary.camera.setup_platform",
-        return_value=True,
+        "homeassistant.components.canary.CANARY_COMPONENTS", ["sensor"]
     ):
         assert await async_setup_component(hass, DOMAIN, config)
         await hass.async_block_till_done()
@@ -105,11 +101,7 @@ async def test_sensors_attributes_pro(hass, canary) -> None:
 
     config = {DOMAIN: {"username": "test-username", "password": "test-password"}}
     with patch("homeassistant.util.dt.utcnow", return_value=now), patch(
-        "homeassistant.components.canary.alarm_control_panel.setup_platform",
-        return_value=True,
-    ), patch(
-        "homeassistant.components.canary.camera.setup_platform",
-        return_value=True,
+        "homeassistant.components.canary.CANARY_COMPONENTS", ["sensor"]
     ):
         assert await async_setup_component(hass, DOMAIN, config)
         await hass.async_block_till_done()
@@ -166,11 +158,7 @@ async def test_sensors_flex(hass, canary) -> None:
 
     config = {DOMAIN: {"username": "test-username", "password": "test-password"}}
     with patch("homeassistant.util.dt.utcnow", return_value=now), patch(
-        "homeassistant.components.canary.alarm_control_panel.setup_platform",
-        return_value=True,
-    ), patch(
-        "homeassistant.components.canary.camera.setup_platform",
-        return_value=True,
+        "homeassistant.components.canary.CANARY_COMPONENTS", ["sensor"]
     ):
         assert await async_setup_component(hass, DOMAIN, config)
         await hass.async_block_till_done()
