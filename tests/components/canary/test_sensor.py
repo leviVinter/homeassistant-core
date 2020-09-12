@@ -11,7 +11,7 @@ from homeassistant.components.canary.sensor import (
 from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT, PERCENTAGE, TEMP_CELSIUS
 from homeassistant.setup import setup_component
 
-from . import mock_device, mock_location, mock_reading
+from . import mock_device, mock_location, mock_reading, update_entity
 
 from tests.common import mock_registry
 
@@ -120,6 +120,7 @@ def test_sensors_attributes_pro(hass, canary) -> None:
         mock_reading("humidity", "50.46"),
         mock_reading("air_quality", "0.4"),
     ]
+    update_entity(hass, entity_id)
 
     state = hass.states.get(entity_id)
     assert state
@@ -130,6 +131,7 @@ def test_sensors_attributes_pro(hass, canary) -> None:
         mock_reading("humidity", "50.46"),
         mock_reading("air_quality", "1.0"),
     ]
+    update_entity(hass, entity_id)
 
     state = hass.states.get(entity_id)
     assert state
