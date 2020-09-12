@@ -1,6 +1,8 @@
 """Tests for the canary component."""
 from unittest.mock import MagicMock, PropertyMock
 
+from canary.api import SensorType
+
 from homeassistant.components.homeassistant import (
     DOMAIN as HA_DOMAIN,
     SERVICE_UPDATE_ENTITY,
@@ -54,6 +56,6 @@ def mock_mode(mode_id, name):
 def mock_reading(sensor_type, sensor_value):
     """Mock Canary Reading class."""
     reading = MagicMock()
-    type(reading).sensor_type = PropertyMock(return_value=sensor_type)
+    type(reading).sensor_type = SensorType(sensor_type)
     type(reading).value = PropertyMock(return_value=sensor_value)
     return reading
